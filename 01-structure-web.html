@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Les applications Web</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/onepoint.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="img/onepoint-big-bg-dot.png" data-background-position="left" data-background-size="contain">
+					<h1>Les applications Web</h1>
+					<h3>Structure et concepts d’une application Web</h3>
+					<p>
+						<small>Nicolas Giraud</small>
+					</p>
+					<img class="logo onepoint" src="img/onepoint.png" />
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-rose.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h3>Les enjeux d'une application Web moderne</h3>
+						<aside class="notes">
+							<p>Retracer en quelques mots l'évolution du contexte applicatif</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Appelet / client lourd</h4>
+						<img class="logo" src="img/01/gdocsui.jpg" />
+						<aside class="notes">
+							<p>Application lourde client / client serveur</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Application web</h4>
+						<img class="logo" src="img/01/web_application.png" />
+						<aside class="notes">
+							<p>Vers des applicaitons web</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Application web multidevice</h4>
+						<img class="logo" src="img/01/visual-lansa-web-development-responsive.png" />
+						<aside class="notes">
+							<p>jusqu'a faires applications multi-device</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Navigateur unique</h4>
+						<img class="logo" src="img/01/internet-explorer.png"  width="30%"/>
+						<aside class="notes">
+							<p>Globalement mono-navigateur</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Navigateur multiple</h4>
+						<img class="logo" src="img/01/navigateurs-internet,1144,image1,fr1243592657,L215.jpg" width="55%"/>
+						<aside class="notes">
+							<p>pluri-navigateur / multidevice</p>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-yellow.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2000</h2>
+						<p> Le SOA </p>
+					</section>
+					<section>
+						<h4>Application web dynamique</h4>
+						<img class="logo" src="img/01/01_archi_http.png" />
+						<aside class="notes">
+							<ul>
+								<li>Un client relativement connnu</li>
+								<li>Un serveur d'application</li>
+								<li>Une base de données</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Introduction des web services </h4>
+						<img class="logo" src="img/01/01_archi_soa.png" />
+						<aside class="notes">
+							<ul>
+								<li>Déport de service</li>
+								<li>Mise en place de services SOAP</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Gestion centralisée des échanges</h4>
+						<img class="logo" src="img/01/01_archi_esb.png" />
+						<aside class="notes">	
+							<ul>
+								<li>Echange de messages multi flux</li>
+								<li>Gestion des indispo</li>
+								<li>SPOF énorme</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Globalisation des SI</h4>
+						<img class="logo" src="img/01/01_archi_intra.png" />
+						<aside class="notes">
+							<ul>
+								<li>SI intégrer</li>
+								<li>Gestion des droits</li>
+								<li>etc...</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-green.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2000</h2>
+						<p> Le MVC </p>
+					</section>
+					<section>
+						<h2>Le MVC</h2>
+						<img class="logo" src="img/01/01_mvc.png" />
+						<p>Implémenter des pages dynamiques </br> coté Serveur</p>
+						<small><ul>
+							<li>Java - JSP</li>
+							<li>.Net - ASP</li>
+							<li>PHP</li>
+						</ul></small>
+					</section>
+					<section>
+						<h4>Struts / JSF </h4>
+						<img class="logo" src="img/01/01_mvc_struts.png" />
+					</section>
+					<section>
+						<h4>Séparation des fonctions</h4>
+						<img class="logo" src="img/01/01_mvc_couche.png" />
+						<aside class="notes">
+							<ul>
+								<li>Ajout de couche pour répondre à des fonction</li>
+								<li>Démultiplication des couches</li>
+								<li>Pas de réelle étenchaité entre les couche.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Architecture applicative en couche</h4>
+						<img class="logo" src="img/01/01_modele_mvc.png" />
+						<aside class="notes">
+							<ul>
+								<li>SI intégrer</li>
+								<li>Gestion des droits</li>
+								<li>etc...</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-rose.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2010</h2>
+						<p> L'ère de la mobilité</p>
+					</section>
+					<section>
+						<h2>Les multi-site</h2>
+						<p>Chaque device son application</p>
+					</section>
+					<section>
+						<h2>Progressive enhancement</h2>
+						<img class="logo" src="img/01/designpeanuts.jpg" />
+						<aside class="notes">
+							<ul>
+								<li>Adaptation des fonctions au device</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Responsive Web Design</h2>
+						<img class="logo" src="img/01/rwd.jpg" />
+						<aside class="notes">
+							<ul>
+								<li>Adaptation du design</li>
+								<li>Même application pour tous</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Universal JS</h2>
+						<aside class="notes">
+							<ul>
+								<li>Rendu possible coté client ET coté serveur</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-purple.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2010</h2>
+						<p>Javascript dans tous ses états</p>
+					</section>
+					<section>
+						<h4>Javascript, l'explosion</h4>
+						<p>Dans les navigateurs </p>
+						<p>Dans les devices mobile</p>
+						<p>Coté serveur (Node JS)</p>
+						<p>En application lourde</p>
+					</section>
+					<section>
+						<h4>ECMA - La Norme JS</h4>
+						<p>ECMA Script 4</p>
+						<p>ECMA Script 5</p>
+						<p>ECMA Script 6 (JS 2015)</p>
+						<p>ECMA Script 7 (JS 2016)</p>
+						<aside class="notes">
+							<ul>
+								<li>Problème de compatibilité navigateur</li>
+								<li>Introduction de la notion de polyfill</li>
+								<li>Exemple du console.log()</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-green.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2010</h2>
+						<p>Les patterns de développement</p>
+						<aside class="notes">
+							<ul>
+								<li>Lien avec le MVC</li>
+								<li>DE plus en plus d'acteurs -> de plus en plus de problématiques</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>MVP - MVVM</h4>
+						<img class="logo" src="img/01/01_Pattern MVP_v1.png" />
+						<aside class="notes">
+							<ul>
+								<li>Séparatoin entre la vue et le modèle</li>
+								<li>MVP appliqué à Android</li>
+								<li>MVP appliqué à Angular</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Flux</h4>
+						<img class="logo" src="img/01/01_Pattern Flux_v2.png" />
+						<aside class="notes">
+							<ul>
+								<li>Supporté par facebook</li>
+								<li>Orienté IHM et non API</li>
+								<li>Orienté JS / Universel</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-purple.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2010</h2>
+						<p>Les framworks avancés</p>
+					</section>
+					<section>
+						<img class="logo" src="img/01/jquery.gif" width="60%"/>
+						<aside class="notes">
+							<ul>
+								<li>Plutot Année 2000, base des Frameworks JS</li>
+								<li>Apport d'un dynamisme simple (ajax)</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<img class="logo" src="img/01/0048_logo-gwt.jpg" width="55%"/>
+						<aside class="notes">
+							<ul>
+								<li>Les premières transpilation</li>
+								<li>Assurer les compatibilité</li>
+								<li>Langage natif (Java)</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<img class="logo" src="img/01/angular-3.svg" />
+						<aside class="notes">
+							<ul>
+								<li>Premier framework complet coté client</li>
+								<li>Das application complètes</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>...</h2>
+						<aside class="notes">
+							<ul>
+								<li>Une session complète sur JS...</li>
+								<li>Typescript</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				
+				
+
+				<section data-background="img/onepoint-bg-dot-yellow.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les années 2010</h2>
+						<p>APIboom</p>
+						<aside class="notes">
+							<ul>
+								<li>Héritage du SOA</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>SOAP vs Rest</h4>
+						<ul>
+							<li>XML vs JSON</li>
+							<li>protocole vs norme</li>
+							<li>SOAP est structuré</li>
+							<li>Rest est stateless</li>
+							<li>Rest utilise HTTP</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Deux philosphies</li>
+								<li>Rest </li>
+								<li>MVP appliqué à Angular</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>SOAP vs Rest</h4>
+						<div height="300px">
+						
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/981_RC01/embed_loader.js"></script> 
+						<script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"rest","geo":"","time":"all"},{"keyword":"soap","geo":"","time":"all"}],"category":5,"property":""}, {"exploreQuery":"cat=5&date=all&q=rest,soap","guestPath":"https://trends.google.fr:443/trends/embed/"}); </script> 	
+						</div>
+					</section>
+					<section>
+						<h4>Vers les architecture microservices</h4>
+						<img class="logo" src="img/01/monolithe.png" />
+						<aside class="notes">
+							<ul>
+								<li>Autre représentation pour une brique SOA</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Vers les architecture microservices</h4>
+						<img class="logo" src="img/01/microservices.png" />
+						<aside class="notes">
+							<ul>
+								<li>Actuellement utilisé par les grands acteurs du web</li>
+								<li>Amazone, Google, Netflix</li>
+								<li>Proche d'une ESB / File JMS dans le concepte</li>
+								<li>Les données ne passent pas par le service registry</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				
+				<section data-background="img/onepoint-bg-dot-green.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Une ou deux applications ?</h2>
+						<p> Le backend et le frontend </p>
+					</section>
+					<section>
+						<img class="logo" src="img/01/backend-frontend.jpg" width="50%"/>
+					</section>
+					<section>
+						<h2>Frontend - Backend</h2>
+						<img class="logo" src="img/01/01_fe_be_environnement.png" />
+					</section>
+					<section>
+						<h2>Frontend - Backend</h2>
+						<img class="logo" src="img/01/01_fe_be_repartition.png" />
+					</section>
+					<section>
+						<h2>Frontend - Backend</h2>
+						<img class="logo" src="img/01/01_fe_be_apis.png" />
+					</section>
+					<section>
+						<h4>Architecture applicative en couche</h4>
+						<img class="logo" src="img/01/01_modele_mvc.png" />
+					</section>
+					<section>
+						<h4>Architecture applicative en couche</h4>
+						<img class="logo" src="img/01/01_modele_api.png" />
+					</section>
+					<section>
+						<h4>Architecture hexagonale</h4>
+						<p>Vers le Domain Drive Developpement (DDD)</p>
+						<p>Adapté aux microservices</p>
+					</section>
+					<section>
+						<h4>Architecture hexagonale</h4>
+						<img class="logo" src="img/01/01_modele_hexagonale.png" />
+					</section>
+					<section>
+						<h4>Architecture hexagonale</h4>
+						<img class="logo" src="img/01/01_modele_enrichie.png" />
+					</section>
+					<section>
+						<h4>Architecture hexagonale</h4>
+						<img class="logo" src="img/01/01_modele_package.png" />
+					</section>
+				</section>
+
+				
+				<section data-background="img/onepoint-bg-dot.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Revolutions</h2>
+						<ul>
+							<li>Du client lourd au client web</li>
+							<li>Multi (device, navigateurs)</li>
+							<li>Javascript, Typescript, etc...</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Démultiplication des complexités</h2>
+						<ul>
+							<li>Complexités Frontend</li>
+							<li>Complexités Backend</li>
+							<li>Complexités Infrastructure</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Stabilisation des backends</h2>
+						<ul>
+							<li>Concepts ancrés (REST)</li>
+							<li>Architecture applicatives fiable</li>
+							<li>Frameworks "historiques"</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Et demain ?</h2>
+						<img class="logo" src="img/01/migration.jpg" />
+					</section>
+				</section>
+				
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
