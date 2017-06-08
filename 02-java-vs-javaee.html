@@ -1,0 +1,435 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Les applications Web</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/onepoint.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="img/onepoint-big-bg-dot.png" data-background-position="left" data-background-size="contain">
+					<h1>Les applications Web</h1>
+					<h3>Java vs Java EE</h3>
+					<p>
+						<small>Nicolas Giraud</small>
+					</p>
+					<img class="logo onepoint" src="img/onepoint.png" />
+          <aside class="notes">
+            <p>Voir en quelques slides ce qu'est java</p>
+            <p>Les différentes versions</p>
+            <p>Qu'est ce que Java EE</p>
+            <p>Identifier quelques frameworks</p>
+          </aside>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-rose.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h3>Les composants Java</h3>
+						<aside class="notes">
+							<p></p>
+						</aside>
+					</section>
+					<section>
+						<h4>Machine virtuelle</h4>
+						<img class="logo" src="img/02/moteur.jpg" width="40%" />
+						<aside class="notes">
+						</aside>
+					</section>
+					<section>
+						<h4>Java Runtime Environement (JRE)</h4>
+						<aside class="notes">
+							<p>Permet une compatibilité entre les OS</p>
+  					  <p>Contient aussi les outils d'analyse (jmx, jmap)</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Outils de développement</h4>
+						<img class="logo" src="img/02/toolbox.gif" width="40%" />
+						<aside class="notes">
+							<p></p>
+						</aside>
+					</section>
+					<section>
+						<h4>Java Development Toolkit (JDK)</h4>
+						<aside class="notes">
+							<p>Outils de compilation</p>
+              <p>A préférer pour les environnements de développement</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Des règles</h4>
+						<img class="logo" src="img/02/codes.jpg" />
+						<aside class="notes">
+						</aside>
+					</section>
+					<section>
+						<h4>Java Language Specification (JLS)</h4>
+            <p><a href="./data/02/jls8.pdf" target="blank">JSL 8</a></p>
+						<aside class="notes">
+							<p>Règles de base du language</p>
+							<p>Implémenté par les JRE / JDK</p>
+							<p>Les différentes JRE : sun/oracle, openjdk, rockit</p>
+						</aside>
+					</section>
+					<section>
+						<h4>Java Specification Request (JSR)</h4>
+            <p><a href="https://fr.wikipedia.org/wiki/Java_Specification_Requests" target="blank">Exmple de JSR</a></p>
+						<aside class="notes">
+							<p>Implémenter par des frameworks, ou dans les JRE</p>
+  						<p>JDBC</p>
+  						<p>JAXRS</p>
+  						<p>JPA</p>
+  						<p>JSP</p>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-yellow.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Les versions de Java</h2>
+						<p> Et leurs introductions majeurs</p>
+					</section>
+					<section>
+						<h4>Java 4 (1.4)</h4>
+						<p>La préhistoire</p>
+						<img class="logo" src="img/02/lascaux.jpg" />
+						<aside class="notes">
+							<ul>
+								<li>Des vecteurs, des arrays</li>
+								<li>Des collection non typées</li>
+								<li>Des iterators et autres boucles do/while</li>
+							</ul>
+						</aside>
+					</section>
+          <section>
+            <pre>
+              <code class="java">
+public static List convert(List listeDTR) throws Exception {
+  List listeBean = new ArraList();
+  try {
+    Iterator itRegion = listeDTR.iterator();
+    while (itRegion.hasNext()) {
+      tempDTR = (DTRManchonModel) itRegion.next();
+      listeBean.add(new DTRManchonBean(tempDTR));
+    }
+    return listeBean;
+  } catch (Exception e) {
+    throw new ApplicationException(e.toString());
+  }
+}
+              </code></pre>
+          </section>
+					<section>
+						<h4>Java 5</h4>
+						<p>L'antiquité</p>
+						<img class="logo" src="img/02/ecriture.jpg" width="20%" />
+						<aside class="notes">
+							<ul>
+								<li> Les génériques</li>
+								<li>Les annotations</li>
+							</ul>
+						</aside>
+					</section>
+          <section data-markdown>
+            ``` java
+              public abstract class AbstractControle&lt;T&gt; implements Controlable&lt;T&gt; {
+
+                  private T valeur;
+
+                  private final List&lt;ErreurMessage&gt; messages;
+
+                  abstract public ErreurMessage getErreurMessage(T valeur);
+
+                  @Override
+                  public AbstractControle&lt;T&gt; onError(final String... args) {
+                      ...
+                  ...
+              }
+            ```
+          </section>
+          <section data-markdown>
+          ``` java
+            public static &lt;D, F extends AbsForm&lt;D&gt;, A extends AbsAction&lt;D, F&gt;&gt;
+                      F executeBridge(final Class&lt;A&gt; action,  F form) {
+                ...
+                return F;
+             }
+          ```
+          </section>
+					<section>
+						<h4>Java 6</h4>
+						<p>Le moyen age</p>
+						<img class="logo" src="img/02/chateau.jpg"  width="50%"/>
+						<aside class="notes">
+							<ul>
+								<li>Amélioration des annotations</li>
+								<li>Ajout de syntaxes (foreach)</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Java 7</h4>
+						<p>La découverte de l'amérique</p>
+						<img class="logo" src="img/02/1492.png" />
+						<aside class="notes">
+							<ul>
+								<li>Evolution de syntaxe (switch sur les chaines)</li>
+								<li>Intriduction des Closables (try-with-resources)</li>
+								<li>Simplification des syntaxes (génériques)</li>
+								<li>Catch multiples</li>
+								<li>Manipulation de fichiers</li>
+							</ul>
+						</aside>
+					</section>
+          <section data-markdown>
+            ``` java
+            public byte[] getData(final ExcelDto classeur) {
+              ByteArrayOutputStream stream;
+              try  {
+                  stream = new ByteArrayOutputStream()
+                  ...
+                } catch (final IOException e) {
+                    throw new IncaTechniqueError(e);
+                } catch (final RuntimeException e) {
+                    throw new IncaTechniqueError(e);
+                } finaly {
+                  stream.close();
+                }
+            }
+            ```
+            ``` java
+            public byte[] getData(final ExcelDto classeur) {
+              try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+                  ...
+                } catch (final IOException | RuntimeExceptione) {
+                    throw new IncaTechniqueError(e);
+                }
+            }
+            ```
+          </section>
+					<section>
+						<h4>Java 8</h4>
+						<p>La révolution</p>
+						<img class="logo" src="img/02/liberte.jpg" width=50% />
+						<aside class="notes">
+							<ul>
+								<li>Les lambdas</li>
+  							<li>L'API Stream</li>
+								<li>La manipulation des temporels (date, time)</li>
+								<li>les Optionnels</li>
+							</ul>
+						</aside>
+					</section>
+          <section data-markdown>
+            ``` java
+              IntStream.range(2, sheet.getLastRowNum())
+                    .mapToObj(sheet::getRow)
+                    .map(this::readRow)
+                    .filter(Objects::nonNull)
+                    .count() == 0
+            ```
+
+            ```java
+
+              final Optional&lt;Cell&gt; code = Optional.ofNullable(row.getCell(codeIndex));
+
+              ...
+
+              return new Eotp(null, code.get().getStringCellValue(),
+                            libelle.get().getStringCellValue(),
+                            enteteColonne, finalite);
+            ```
+          </section>
+					<section>
+						<h4>Java 9</h4>
+						<p>La conquete spaciale</p>
+						<img class="logo" src="img/02/spacex.jpg" width=30% />
+						<aside class="notes">
+							<ul>
+								<li>Les traitements asynchrones</li>
+								<li>Une JVM Modulaire</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-green.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Java EE</h2>
+						<p> Aide ou complexité ?</p>
+					</section>
+					<section>
+						<h2>Java EE c'est quoi ?</h2>
+						<p> Trois ensembles / sous ensemle de spécifications</p>
+						<ul>
+							<li>Java Standrd Edition - Java SE</li>
+  						<li>Java Enterprise Edition - Java EE</li>
+              <li>Java Mobile Edition - Java ME</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+                <li>Un ensemble de spécifications dans une version données</li>
+								<li>J2E, JEE sont d'anciennes appellations</li>
+    						<li>Java SE - Implémentation de base</li>
+    						<li>Java EE - Java SE plus des composant dit d'entreprise</li>
+    						<li>Java ME - Adaptation légère pour la mobilité + éléments comme la gestion du temps real</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h4>Zoom sur  </h4>
+						<img class="logo" src="img/02/java-ee.png" />
+						<aside class="notes">
+						</aside>
+					</section>
+					<section>
+						<img class="logo" src="img/02/java-ee-7.png" />
+						<aside class="notes">
+							<ul>
+								<li>JPA - Persistence</li>
+  							<li>JTA - Transaction</li>
+								<li>EJB - Transaction </li>
+								<li>JAX-RS - API Rest</li>
+								<li>JMS - Messaging </li>
+								<li>CDI - Injection de dépendance</li>
+								<li>etc.</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<img class="logo" src="img/02/java-ee-7_2.png" />
+					</section>
+					<section>
+						<img class="logo" src="img/02/java-ee-7_3.png" />
+					</section>
+					<section>
+						<h4>Et dans nos applicationsle code, ca change quoi ?</h4>
+						<img class="logo" src="img/02/question mark.jpg" width="15%" />
+						<aside class="notes">
+							<ul>
+								<li>Pas de référence aux implémentations réeles</li>
+  							<li>Pas d'import de librairie d'implémentation </li>
+  							<li>Service assuré par le serveur.</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot-rose.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3> Hibernate ?</h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>OUI - Impélmentation de JPA</p>
+						</aside>
+					</section>
+          <section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3> Toplink / eclipselink </h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>OUI - Impélmentation de JPA</p>
+						</aside>
+					</section>
+          <section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3> Mybatis </h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>ORM - Simple ORM</p>
+						</aside>
+					</section>
+          <section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3>Spring</h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>NON - Mes peut remplir les mêmes foncitonnlaité que des Références Java EE</p>
+						</aside>
+					</section>
+          <section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3>Struts</h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>NON - Surcouche pour MVC</p>
+						</aside>
+					</section>
+          <section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3>Weld</h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>OUI - Impélmentation de CDI</p>
+						</aside>
+					</section>
+          <section>
+						<h2>Java EE or not Java EE ?</h2>
+						<h3>Logback, Slf4j</h3>
+  						<img class="logo" src="img/02/java-ee-7_2.png" />
+						<aside class="notes">
+							<p>NON - Utilitaire pour le logging (commplémentaire à la JVM)</p>
+						</aside>
+					</section>
+				</section>
+
+				<section data-background="img/onepoint-bg-dot.png" data-background-position="bottom left" data-background-size="30%">
+					<section>
+						<h2>Attention à vos CVs ...</h2>
+  						<img class="logo" src="img/02/buzzword.png" width="50%"/>
+            <aside class="notes">
+							<ul>
+								<p>Identifier les briques Java EE de vos projets</p>
+								<p>Avoir une idée de ce qu'est Java EE par rapport à Java</p>
+							</ul>
+						</aside>
+					</section>
+  					<section>
+  						<h2>Merci</h2>
+  							<ul>
+  								<p>Prochaine étape : <br /> Les serveurs qui font tourner cet écosystème </p>
+  								<p>Lequel choisir ?</p>
+  							</ul>
+  					</section>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
